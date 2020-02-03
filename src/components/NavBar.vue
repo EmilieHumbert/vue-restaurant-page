@@ -1,32 +1,70 @@
 <template>
-  <div id="app">
-    <NavBar />
-    <router-view></router-view>
+  <div id="content">
+    <header class="main-head">
+      <img class="main-logo" alt="logo" src="../assets/logo.png">
+      <nav id="main-nav" class="main-nav" :class="{ 'open': menuOpen }">
+        <router-link to="/" class="nav-links nav-home">Home</router-link>
+        <router-link to="/menu" class="nav-links nav-menu">Menu</router-link>
+        <img id="logo" class="nav-logo" src="../assets/logo.png" alt="logo">
+        <router-link to="/about" class="nav-links nav-about-us">About Us</router-link>
+        <router-link to="/contact" class="nav-links nav-contact">Contact</router-link>
+      </nav>
+      <div class="icon" @click="menuOpen = !menuOpen">
+        <img id="hamburger-icon" alt="hamburger-icon" src="../assets/menu.svg">
+      </div>
+    </header>
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
-
 export default {
-  name: 'App',
-  components: {
-    NavBar
+  data: function () {
+    return {
+      menuOpen: false
+    }
   }
 }
 </script>
 
-<style>
-body {
-  background-color: black;
-  font-family: 'Montserrat', sans-serif;
+<style scoped>
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+
+
+
+/* header */
+.main-head {
+  background: black;
+  grid-area: header;
+  padding: 1em 0;
+}
+.main-head div.icon {
+  right: 0;
+  position: absolute;
+  float: right;
+  display: block;
 }
 
-#content {
-  background: black;
-  margin: 0 auto;
-  width: 100%;
+
+/* navigation */
+.main-nav {
+  grid-area: nav;
 }
+.main-nav a {
+  color: #f2f2f2;
+  text-align: center;
+  padding-right: 0.7rem;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+
+#hamburger-icon {
+  padding: 0.625rem;
+  cursor: pointer;
+}
+
 
 /* Media queries */
 @media (max-width: 499px) {
@@ -184,5 +222,9 @@ body {
     height: 3.5rem;
     width: 3.5rem;
   }
+}
+
+.main-content {
+  grid-area: main;
 }
 </style>
